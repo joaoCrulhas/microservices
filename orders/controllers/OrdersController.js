@@ -39,30 +39,15 @@ exports.index = async (req, res, next) => {
 
 exports.show = async (req, res, next) => {
     const { id } = req.params;
-
     const order = await models.Order.findById({_id : id});
     const { BookID, CustomerID, initialDate, deliveryDate } = order
-
-    const customer = await axios.get(`http://127.0.0.1:4800/customers/${CustomerID}`);
-    const book = await axios.get(`http://127.0.0.1:4560/books/${BookID}`);
-
-    const { author, title } = book.data.book;
-    const { name : customerName} = customer.data.customer;
-
     const orderComplete = {
-        customer: {
-            CustomerID,
-            customerName
-        },
-        book:{
-            BookID,
-            author,
-            title
-        },
+        CustomerID,        
+        BookID,
         initialDate,
         deliveryDate,
-
     }
+    
     res.json({
         order: orderComplete
     });

@@ -2,3 +2,5 @@ env.js
 books/node_modules
 customers/node_modules
 orders/node_modules
+monolitica/node_modules
+gateway/node_modules
